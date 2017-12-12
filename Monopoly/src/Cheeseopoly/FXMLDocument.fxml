@@ -9,18 +9,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1000.0" style="-fx-background-color: tan;" styleClass="main.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="monopoly.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1000.0" style="-fx-background-color: tan;" styleClass="main.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Cheeseopoly.Board">
    <children>
       <ImageView fitHeight="702.0" fitWidth="796.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Cheeseopoly.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="dice1" fitHeight="64.0" fitWidth="64.0" layoutX="351.0" layoutY="130.0" onMouseClicked="#diceRoll" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="dice1" fitHeight="64.0" fitWidth="64.0" layoutX="351.0" layoutY="130.0" onMouseClicked="#diceRoll" preserveRatio="true">
          <image>
             <Image url="@/dice/4.png" />
          </image></ImageView>
-      <ImageView fx:id="dice2" fitHeight="64.0" fitWidth="64.0" layoutX="448.0" layoutY="130.0" onMouseClicked="#diceRoll" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="dice2" fitHeight="67.0" fitWidth="69.0" layoutX="448.0" layoutY="127.0" onMouseClicked="#diceRoll" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/dice/2.png" />
          </image></ImageView>
@@ -36,7 +36,7 @@
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="138.0" layoutY="4.0" text="\$1500">
+            <Label fx:id="mickeyMoney" layoutX="138.0" layoutY="4.0" text="\$1500">
                <font>
                   <Font name="AppleGothic Regular" size="29.0" />
                </font>
@@ -55,7 +55,7 @@
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="138.0" layoutY="4.0" text="\$1500">
+            <Label fx:id="speedyMoney" layoutX="138.0" layoutY="4.0" text="\$1500">
                <font>
                   <Font name="AppleGothic Regular" size="29.0" />
                </font>
@@ -74,14 +74,14 @@
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="138.0" layoutY="4.0" text="\$1500">
+            <Label fx:id="jerryMoney" layoutX="138.0" layoutY="4.0" text="\$1500">
                <font>
                   <Font name="AppleGothic Regular" size="29.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="mightyPane" disable="true" layoutX="696.0" layoutY="200.0" prefHeight="51.0" prefWidth="305.0" style="-fx-background-color: green;" visible="false">
+      <Pane fx:id="mightyPane" layoutX="696.0" layoutY="200.0" prefHeight="51.0" prefWidth="305.0" style="-fx-background-color: green;" visible="false">
          <children>
             <ImageView fitHeight="55.0" fitWidth="62.0" layoutX="-3.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -93,7 +93,7 @@
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="138.0" layoutY="4.0" text="\$1500">
+            <Label fx:id="mightyMoney" layoutX="138.0" layoutY="4.0" text="\$1500">
                <font>
                   <Font name="AppleGothic Regular" size="29.0" />
                </font>
@@ -115,116 +115,130 @@
             <Label layoutX="14.0" layoutY="100.0" text="Rent:" />
             <Label fx:id="cardPrice" layoutX="58.0" layoutY="73.0" text="320" />
             <Label fx:id="cardRent" layoutX="60.0" layoutY="100.0" prefHeight="17.0" prefWidth="35.0" text="32" />
-            <Button disable="true" layoutX="142.0" layoutY="165.0" mnemonicParsing="false" text="Buy" />
+            <Button fx:id="buy" disable="true" layoutX="139.0" layoutY="124.0" mnemonicParsing="false" onAction="#buyClicked" text="Buy" />
+            <Button fx:id="rent" disable="true" layoutX="22.0" layoutY="151.0" mnemonicParsing="false" onAction="#rentClicked" text="Pay Rent" />
+            <Button fx:id="pass" disable="true" layoutX="136.0" layoutY="159.0" mnemonicParsing="false" onAction="#passClicked" text="Pass" />
+            <Label layoutX="15.0" layoutY="129.0" text="Owner:" />
+            <Label fx:id="owner" layoutX="72.0" layoutY="129.0" />
          </children>
       </Pane>
-      <Pane fx:id="dip" layoutX="608.0" layoutY="87.0" onMouseClicked="#dipClicked" prefHeight="59.0" prefWidth="83.0">
+      <Pane fx:id="dip" layoutX="608.0" layoutY="87.0" prefHeight="59.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_31" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="fondue" layoutX="608.0" layoutY="262.0" onMouseClicked="#fondueClicked" prefHeight="59.0" prefWidth="83.0">
+      <Pane fx:id="cccPane" layoutX="702.0" layoutY="253.0" prefHeight="257.0" prefWidth="287.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="cccTitle" layoutX="11.0" layoutY="14.0" prefHeight="74.0" prefWidth="274.0" text="Chance!" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <Label fx:id="cccText" layoutX="49.0" layoutY="114.0" prefHeight="141.0" prefWidth="182.0" text="2nd Place in a beauty pagent! You win $10!" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </Pane>
+      <Pane fx:id="fondue" layoutX="608.0" layoutY="262.0" prefHeight="59.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_34" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="duoz" layoutX="609.0" layoutY="320.0" onMouseClicked="#duozClicked" prefHeight="62.0" prefWidth="83.0">
+      <Pane fx:id="duoz" layoutX="609.0" layoutY="320.0" prefHeight="62.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_35" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="pizza" layoutX="608.0" layoutY="438.0" onMouseClicked="#pizzaClicked" prefHeight="59.0" prefWidth="83.0">
+      <Pane fx:id="pizza" layoutX="608.0" layoutY="438.0" prefHeight="59.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_37" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="mozzy" layoutX="609.0" layoutY="555.0" onMouseClicked="#mozzyClicked" prefHeight="59.0" prefWidth="83.0">
+      <Pane fx:id="mozzy" layoutX="609.0" layoutY="555.0" prefHeight="59.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_39" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="velveeta" layoutX="553.0" layoutY="609.0" onMouseClicked="#velveetaClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="velveeta" layoutX="553.0" layoutY="609.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_1" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="american" layoutX="437.0" layoutY="608.0" onMouseClicked="#americanClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="american" layoutX="437.0" layoutY="608.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_3" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="cheezit" layoutX="320.0" layoutY="610.0" onMouseClicked="#cheezitClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="cheezit" layoutX="320.0" layoutY="610.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_5" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="cottage" layoutX="261.0" layoutY="610.0" onMouseClicked="#cottageClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="cottage" layoutX="261.0" layoutY="610.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_6" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="ricotta" layoutX="145.0" layoutY="609.0" onMouseClicked="#ricottaClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="ricotta" layoutX="145.0" layoutY="609.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_8" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="marscapone" layoutX="88.0" layoutY="609.0" onMouseClicked="#marscaponeClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="marscapone" layoutX="88.0" layoutY="609.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_9" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" />
             <ImageView fx:id="_9" fitHeight="78.0" fitWidth="59.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" />
          </children></Pane>
       <ImageView fx:id="_22" fitHeight="78.0" fitWidth="59.0" layoutX="148.0" layoutY="12.0" pickOnBounds="true" />
-      <Pane fx:id="mac" layoutX="87.0" layoutY="8.0" onMouseClicked="#macClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="mac" layoutX="87.0" layoutY="8.0" prefHeight="83.0" prefWidth="61.0">
          <children>
-            <ImageView fx:id="_21" fitHeight="78.0" fitWidth="59.0" layoutX="1.0" layoutY="4.0" pickOnBounds="true" rotate="180.0" />
+            <ImageView fx:id="_21" fitHeight="78.0" fitWidth="59.0" layoutY="8.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="nachos" layoutX="203.0" layoutY="8.0" onMouseClicked="#nachosClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="nachos" layoutX="203.0" layoutY="8.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_23" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" rotate="180.0" />
          </children></Pane>
-      <Pane fx:id="grilled" layoutX="262.0" layoutY="7.0" onMouseClicked="#grilledClicked" prefHeight="83.0" prefWidth="59.0">
+      <Pane fx:id="grilled" layoutX="262.0" layoutY="7.0" prefHeight="83.0" prefWidth="59.0">
          <children>
             <ImageView fx:id="_24" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" rotate="180.0" />
          </children></Pane>
-      <Pane fx:id="hotspicy" layoutX="321.0" layoutY="10.0" onMouseClicked="#hotspicyClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="hotspicy" layoutX="321.0" layoutY="10.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_25" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" rotate="180.0" />
          </children></Pane>
-      <Pane fx:id="lasagna" layoutX="379.0" layoutY="11.0" onMouseClicked="#lasagnaClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="lasagna" layoutX="379.0" layoutY="11.0" prefHeight="83.0" prefWidth="61.0">
          <children>
             <ImageView fx:id="_26" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" rotate="180.0" />
          </children></Pane>
-      <Pane fx:id="ziti" layoutX="436.0" layoutY="12.0" onMouseClicked="#zitiClicked" prefHeight="83.0" prefWidth="61.0">
+      <Pane fx:id="ziti" layoutX="436.0" layoutY="12.0" prefHeight="83.0" prefWidth="61.0">
+         <children>
+            <ImageView fx:id="_27" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" rotate="180.0" />
+         </children></Pane>
+      <Pane fx:id="farmer" layoutX="496.0" layoutY="11.0" prefHeight="83.0" prefWidth="59.0">
          <children>
             <ImageView fx:id="_28" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" rotate="180.0" />
          </children></Pane>
-      <Pane fx:id="farmer" layoutX="496.0" layoutY="11.0" onMouseClicked="#farmerClicked" prefHeight="83.0" prefWidth="59.0">
-         <children>
-            <ImageView fx:id="_28" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" rotate="180.0" />
-         </children></Pane>
-      <Pane fx:id="alfredo" layoutX="556.0" layoutY="9.0" onMouseClicked="#alfredoClicked" prefHeight="83.0" prefWidth="59.0">
+      <Pane fx:id="alfredo" layoutX="556.0" layoutY="9.0" prefHeight="83.0" prefWidth="59.0">
          <children>
             <ImageView fx:id="_29" fitHeight="78.0" fitWidth="59.0" pickOnBounds="true" rotate="180.0" />
          </children></Pane>
-      <Pane fx:id="colbyjack" layoutX="11.0" layoutY="89.0" onMouseClicked="#colbyjackClicked" prefHeight="57.0" prefWidth="83.0">
+      <Pane fx:id="colbyjack" layoutX="11.0" layoutY="89.0" prefHeight="57.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_19" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="montjack" layoutX="12.0" layoutY="148.0" onMouseClicked="#montjackClicked" prefHeight="57.0" prefWidth="83.0">
+      <Pane fx:id="montjack" layoutX="12.0" layoutY="148.0" prefHeight="57.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_18" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="colby" layoutX="9.0" layoutY="262.0" onMouseClicked="#colbyClicked" prefHeight="57.0" prefWidth="83.0">
+      <Pane fx:id="colby" layoutX="9.0" layoutY="262.0" prefHeight="57.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_16" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="whitecheddar" layoutX="10.0" layoutY="321.0" onMouseClicked="#whitecheddarClicked" prefHeight="61.0" prefWidth="83.0">
+      <Pane fx:id="whitecheddar" layoutX="10.0" layoutY="321.0" prefHeight="61.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_15" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="mozzerella" layoutX="9.0" layoutY="380.0" onMouseClicked="#mozerellaClicked" prefHeight="57.0" prefWidth="83.0">
+      <Pane fx:id="mozzerella" layoutX="9.0" layoutY="380.0" prefHeight="57.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_14" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="parm" layoutX="12.0" layoutY="437.0" onMouseClicked="#parmClicked" prefHeight="57.0" prefWidth="83.0">
+      <Pane fx:id="parm" layoutX="12.0" layoutY="437.0" prefHeight="57.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_13" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="cow" layoutX="8.0" layoutY="496.0" onMouseClicked="#cowClicked" prefHeight="57.0" prefWidth="83.0">
+      <Pane fx:id="cow" layoutX="8.0" layoutY="496.0" prefHeight="57.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_12" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
-      <Pane fx:id="romano" layoutX="5.0" layoutY="555.0" onMouseClicked="#romanoClicked" prefHeight="57.0" prefWidth="83.0">
+      <Pane fx:id="romano" layoutX="5.0" layoutY="555.0" prefHeight="57.0" prefWidth="83.0">
          <children>
             <ImageView fx:id="_11" fitHeight="58.0" fitWidth="82.0" pickOnBounds="true" />
          </children></Pane>
@@ -240,7 +254,7 @@
             <Image url="@/tokens/mickey.gif" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="startPane" layoutX="248.0" layoutY="169.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: beige;" visible="false">
+      <AnchorPane fx:id="startPane" layoutX="248.0" layoutY="169.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: beige;">
          <children>
             <Label layoutX="120.0" layoutY="14.0" text="Welcome to Cheeseopoly">
                <font>
@@ -280,8 +294,22 @@
          </children>
       </AnchorPane>
       <ImageView fx:id="_10" fitHeight="58.0" fitWidth="82.0" layoutX="10.0" layoutY="622.0" pickOnBounds="true" rotate="-45.0" />
-      <Pane fx:id="_30" layoutX="604.0" layoutY="3.0" prefHeight="59.0" prefWidth="83.0" />
-      <Pane fx:id="_20" layoutX="8.0" layoutY="19.0" prefHeight="59.0" prefWidth="83.0" />
       <ImageView fx:id="_32" fitHeight="58.0" fitWidth="82.0" layoutX="620.0" layoutY="146.0" pickOnBounds="true" />
+      <Pane layoutX="613.0" layoutY="23.0" pickOnBounds="true" prefHeight="59.0" prefWidth="75.0" rotate="-143.1">
+         <children>
+            <ImageView fx:id="_30" fitHeight="62.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <Pane layoutX="5.0" layoutY="19.0" pickOnBounds="true" prefHeight="59.0" prefWidth="83.0">
+         <children>
+            <ImageView fx:id="_20" fitHeight="64.0" fitWidth="84.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
+         </children>
+      </Pane>
+      <Label layoutX="714.0" layoutY="564.0" text="Click the Dice to Roll!" textFill="WHITE">
+         <font>
+            <Font name="AppleGothic Regular" size="28.0" />
+         </font>
+      </Label>
+      <Button fx:id="end" disable="true" layoutX="787.0" layoutY="614.0" mnemonicParsing="false" onAction="#endClicked" prefHeight="55.0" prefWidth="121.0" text="End Turn" />
    </children>
 </AnchorPane>
