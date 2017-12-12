@@ -7,6 +7,6 @@ Choose your favorite cartoon mouse, and traverse the board buying properties and
 
 ![Alt text](/screenshot.png?raw=true "The Board:")
 
-To run: [Download the Jar](/Monopoly/dist/Cheeseopoly.jar)
+To run: [Download the Jar](/Cheeseopoly.jar)
 
 Otherwise, open with Netbeans
